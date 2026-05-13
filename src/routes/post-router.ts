@@ -7,6 +7,7 @@ const controller = new PostController();
 
 router.post('/posts', verifyTokenMiddleware, controller.create);
 router.get('/posts', verifyTokenMiddleware, controller.getAll);
+router.get('/posts/:id', verifyTokenMiddleware, controller.getById);
 router.put('/posts/:postId/like', verifyTokenMiddleware, controller.likePost);
 
 export default router;

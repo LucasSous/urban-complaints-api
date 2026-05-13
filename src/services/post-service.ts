@@ -12,6 +12,14 @@ export class PostService {
         return await this.postRepository.getAll();
     }
 
+    async getPostById(id: string) {
+        const post = await this.postRepository.findById(id);
+        if (!post) {
+            throw new Error("Post not found");
+        }
+        return post;
+    }
+
     async likePost(postId: string) {
         const post = await this.postRepository.findById(postId);
 

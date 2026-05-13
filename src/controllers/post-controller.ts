@@ -46,6 +46,21 @@ export class PostController {
         }
     }
 
+    async getById(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+            if (!id) {
+                return res.status(400).json({ error: "Post ID is required" });
+            }
+            const post = await postService.getPostById(id as string);
+            return res.status(200).json(post);
+        } catch (error: any) {
+            return res.status(500).json({
+                message: error.message,
+            });
+        }
+    }
+
     async likePost(req: Request, res: Response) {
         try {
             const { postId } = req.params;
